@@ -24,26 +24,39 @@ class SingleCycleLinklist():
         return count
 
     def travel(self):
+        if self.is_empty():
+            return
         cur = self.__head
-        while cur is not None:
+        while cur.next != self.__head:
             print(cur.elem, end=" ")
             cur = cur.next
-        print("")
+        print(cur.elem)
 
     def append(self, item):
         node = Node(item)
         cur = self.__head
         if self.is_empty():
             self.__head = node
+            node.next = node
         else:
-            while cur.next != None:
+            while cur.next != self.__head:
                 cur = cur.next
             cur.next = node
+            node.next = self.__head
 
     def add(self, item):
         node = Node(item)
-        node.next = self.__head
-        self.__head = node
+
+        if self.is_empty():
+            self.__head = node
+            node.next = node
+        else:
+            cur = self.__head
+            while cur.next != self.__head:
+                cur = cur.next
+            node.next = self.__head
+            self.__head = node
+            cur.next = node
 
     def insert(self, pos, item):
         if pos <= 0:
@@ -62,7 +75,7 @@ class SingleCycleLinklist():
 
     def search(self, item):
         cur = self.__head
-        while cur != None:
+        while cur.next != self.__head:
             if cur.elem == item:
                 return True
             else:
@@ -72,7 +85,7 @@ class SingleCycleLinklist():
     def remove(self, item):
         cur = self.__head
         pre = None
-        while cur != None:
+        while cur is not None:
             if cur.elem == item:
                 # 先判断此节点是否为头结点
                 # 头结点
@@ -87,7 +100,7 @@ class SingleCycleLinklist():
 
 
 if __name__ == "__main__":
-    mylist = SingleLinklist()
+    mylist = SingleCycleLinklist()
     print(mylist.is_empty())
     print(mylist.length())
 
