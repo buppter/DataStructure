@@ -48,7 +48,7 @@ class DoubleLinkedList(object):
     def insert(self, pos, item):
         if pos <= 0:
             self.add(item)
-        elif pos > (self.length() -1 ):
+        elif pos > (self.length() - 1):
             self.append(item)
         else:
             node = Node(item)
@@ -56,7 +56,7 @@ class DoubleLinkedList(object):
             count = 0
             while count < pos:
                 count += 1
-                cur = cur.next 
+                cur = cur.next
             node.next = cur
             node.prev = cur.prev
             cur.prev.next = node
@@ -88,7 +88,6 @@ class DoubleLinkedList(object):
                 cur = cur.next
 
 
-
 if __name__ == "__main__":
     mylist = DoubleLinkedList()
     print(mylist.is_empty())
@@ -111,4 +110,3 @@ if __name__ == "__main__":
     mylist.remove(300)
     mylist.remove(100)
     mylist.travel()
-

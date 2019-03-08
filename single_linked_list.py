@@ -3,24 +3,25 @@ class Node(object):
         self.elem = elem
         self.next = None
 
+
 class SingleLinklist():
     def __init__(self, node=None):
         self.__head = node
 
     def is_empty(self):
-        return self.__head == None
+        return self.__head is None
 
     def length(self):
         cur = self.__head
         count = 0
-        while cur != None:
+        while cur is not None:
             count += 1
             cur = cur.next
         return count
 
     def travel(self):
         cur = self.__head
-        while cur != None:
+        while cur is not None:
             print(cur.elem, end=" ")
             cur = cur.next
         print("")
@@ -31,7 +32,7 @@ class SingleLinklist():
         if self.is_empty():
             self.__head = node
         else:
-            while cur.next != None:
+            while cur.next is not None:
                 cur = cur.next
             cur.next = node
 
@@ -49,7 +50,7 @@ class SingleLinklist():
             node = Node(item)
             pre = self.__head
             count = 0
-            while count < (pos-1):
+            while count < (pos - 1):
                 count += 1
                 pre = pre.next
             node.next = pre.next
@@ -57,7 +58,7 @@ class SingleLinklist():
 
     def search(self, item):
         cur = self.__head
-        while cur != None:
+        while cur is not None:
             if cur.elem == item:
                 return True
             else:
@@ -67,11 +68,11 @@ class SingleLinklist():
     def remove(self, item):
         cur = self.__head
         pre = None
-        while cur != None:
+        while cur is not None:
             if cur.elem == item:
                 # 先判断此节点是否为头结点
                 # 头结点
-                if cur == self.__head:    # if pre == None:
+                if cur == self.__head:  # if pre == None:
                     self.__head = cur.next
                 else:
                     pre.next = cur.next

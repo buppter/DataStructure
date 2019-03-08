@@ -3,6 +3,7 @@ class Node(object):
         self.elem = elem
         self.next = None
 
+
 class SingleCycleLinklist():
     def __init__(self, node=None):
         self.__head = node
@@ -10,7 +11,7 @@ class SingleCycleLinklist():
             node.next = node
 
     def is_empty(self):
-        return self.__head == None
+        return self.__head is None
 
     def length(self):
         if self.is_empty():
@@ -24,12 +25,12 @@ class SingleCycleLinklist():
 
     def travel(self):
         cur = self.__head
-        while cur != None:
+        while cur is not None:
             print(cur.elem, end=" ")
             cur = cur.next
         print("")
 
-    def append(self, item): 
+    def append(self, item):
         node = Node(item)
         cur = self.__head
         if self.is_empty():
@@ -53,7 +54,7 @@ class SingleCycleLinklist():
             node = Node(item)
             pre = self.__head
             count = 0
-            while count < (pos-1):
+            while count < (pos - 1):
                 count += 1
                 pre = pre.next
             node.next = pre.next
@@ -75,7 +76,7 @@ class SingleCycleLinklist():
             if cur.elem == item:
                 # 先判断此节点是否为头结点
                 # 头结点
-                if cur == self.__head:    # if pre == None:
+                if cur == self.__head:  # if pre == None:
                     self.__head = cur.next
                 else:
                     pre.next = cur.next
