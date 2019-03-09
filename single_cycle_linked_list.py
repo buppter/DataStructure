@@ -74,56 +74,67 @@ class SingleCycleLinklist():
             pre.next = node
 
     def search(self, item):
+        if self.is_empty():
+            return False
         cur = self.__head
         while cur.next != self.__head:
             if cur.elem == item:
                 return True
             else:
                 cur = cur.next
+        if cur.elem == item:
+            return True
         return False
 
     def remove(self, item):
+        if self.is_empty():
+            return
         cur = self.__head
         pre = None
-        while cur is not None:
+        while cur.next != self.__head:
             if cur.elem == item:
                 # 先判断此节点是否为头结点
-                # 头结点
+
                 if cur == self.__head:  # if pre == None:
+                    # 头结点
+                    # 找尾节点
+                    rear = self.__head
+                    while rear.next != self.__head:
+                        rear = rear.next
                     self.__head = cur.next
+                    rear.next = self.__head
                 else:
+                    # 中间节点
                     pre.next = cur.next
-                break
+                return
             else:
                 pre = cur
                 cur = cur.next
+        # 退出循环，cur为尾节点
+        if cur.elem == item:
+            if cur == self.__head:
+                self.__head = None
+            else:
+                pre.next = cur.next
 
 
 if __name__ == "__main__":
     mylist = SingleCycleLinklist()
-    print(mylist.is_empty())
-    print(mylist.length())
-
+    mylist.append(0)
     mylist.append(1)
-    mylist.append(2)
-    mylist.append(3)
-    mylist.append(4)
-    mylist.append(5)
     mylist.add(10)
+    mylist.add(2)
+    mylist.append(3)
+
     print(mylist.is_empty())
     print(mylist.length())
-    mylist.insert(0, 100)
-    mylist.insert(4, 44)
-    mylist.insert(mylist.length(), 200)
-    mylist.insert(13, 300)
+    print(mylist.search(0))
     mylist.travel()
-    print(mylist.search(44))
-    print(mylist.search(4000))
-    mylist.remove(10)
+
+    mylist.remove(0)
+    # mylist.remove(3)
+    mylist.insert(0, 0)
+    mylist.insert(3, 22)
+    mylist.insert(mylist.length(), 30)
     mylist.travel()
-    mylist.remove(100)
-    mylist.travel()
-    mylist.remove(44)
-    mylist.travel()
-    mylist.remove(200)
-    mylist.travel()
+    print(mylist.is_empty())
