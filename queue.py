@@ -1,5 +1,6 @@
 class Queue(object):
     """队列"""
+
     def __init__(self):
         self.__list = []
 
