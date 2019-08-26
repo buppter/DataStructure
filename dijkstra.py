@@ -32,7 +32,7 @@ def dijkstra(graph, start):
         pair = heapq.heappop(pqueue)
         dist = pair[0]
         vertex = pair[1]
-        seen.add(start)
+        seen.add(vertex)
 
         nodes = graph[vertex].keys()
 
